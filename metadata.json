@@ -1,0 +1,5 @@
+{
+  "name": "IdentityLens AI",
+  "description": "A dashboard for managing face identities and recognizing them in uploaded photos using Gemini AI.",
+  "requestFramePermissions": []
+}
