@@ -4,6 +4,7 @@ import { ViewState } from '../types';
 interface SidebarProps {
   currentView: ViewState;
   onChangeView: (view: ViewState) => void;
+  onLogout: () => void;
 }
 
 // Icons (Simulated using SVG for standalone file requirement)
@@ -17,7 +18,7 @@ const ScanIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><circle cx="12" cy="12" r="3" /></svg>
 );
 
-export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView, onLogout }) => {
   const navItems: { id: ViewState; label: string; icon: React.ReactNode }[] = [
     { id: 'dashboard', label: 'Dashboard', icon: <GridIcon /> },
     { id: 'identities', label: 'Identities', icon: <UsersIcon /> },
@@ -53,13 +54,21 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) =
       </nav>
 
       <div className="p-6 border-t border-slate-800">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-4">
           <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-600 to-amber-500 border border-orange-400/30"></div>
           <div>
             <p className="text-sm font-medium text-white">Admin User</p>
             <p className="text-xs text-slate-500">Bank Mega Pro</p>
           </div>
         </div>
+        
+        <button 
+          onClick={onLogout}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-800 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20 border border-transparent text-slate-400 text-sm font-medium rounded-lg transition-all"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+          Sign Out
+        </button>
       </div>
     </aside>
   );
